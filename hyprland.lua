@@ -52,8 +52,8 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("nm-applet")
   hl.exec_cmd("waybar")
   hl.exec_cmd("hyprpaper")
+  hl.exec_cmd("systemctl --user start xdg-desktop-portal-hyprland")
 end)
-
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -63,6 +63,11 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+
+-- REFACTOR
+-- ADDED BY PBK
+-- env = XDG_CURRENT_DESKTOP,Hyprland
+-- env = XDG_SESSION_TYPE,wayland
 
 
 -----------------------
@@ -91,8 +96,8 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  = 5,
-        gaps_out = 20,
+        gaps_in  = 2,
+        gaps_out = 2,
 
         border_size = 2,
 
@@ -278,6 +283,28 @@ hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 -- ADDED BY PBK
 hl.bind(mainMod .. " + A",  hl.dsp.layout("rotatesplit"))
+-- REFACTOR
+-- bind = $mainMod, F, fullscreen, 1
+hl.bind(mainMod .. " + F",  hl.dsp.window.fullscreen(1))
+-- bind = ALT CONTROL, T, exec, $terminal
+-- bind = ALT, TAB, cyclenext
+hl.bind("ALT + TAB", hl.dsp.layout("cyclenext"))
+-- hl.bind("ALT + TAB", hl.dsp.layout.cyclenext())
+-- bind = SHIFT ALT, Tab, cyclenext, prev
+-- # bind = SHIFT ALT, Enter, layoutmsg, swapwithmaster # master?
+-- bind = $mainMod, Return, layoutmsg, movetoroot active unstable # dwindle
+-- # bind = $mainMod, Return, layoutmsg, togglesplit # dwindle
+-- # bind = $mainMod, W, exec, firefox
+-- bind = $mainMod, W, exec, qutebrowser
+-- hl.bind("SHIFT + ALT + H",  hl.dsp.window.focus({ direction = "left"}))
+-- hl.bind("SHIFT + ALT + H",  hl.dsp.focus({ direction = "down" }))
+-- hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+-- hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+-- hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+-- bind = ALT SHIFT, h, movefocus, l
+-- bind = ALT SHIFT, l, movefocus, r
+-- bind = ALT SHIFT, k, movefocus, u
+-- bind = ALT SHIFT, j, movefocus, d
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -312,8 +339,6 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = tr
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
-
--- ADDED BY PBK
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
