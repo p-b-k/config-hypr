@@ -278,6 +278,7 @@ hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 -- ADDED BY PBK
 hl.bind(mainMod .. " + A",  hl.dsp.layout("rotatesplit"))
+hl.bind(mainMod .. " + F",  hl.dsp.window.fullscreen(1))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
