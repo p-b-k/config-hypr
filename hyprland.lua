@@ -32,7 +32,6 @@ local terminal    = "kitty"
 local fileManager = "dolphin"
 local menu        = "rofi -show drun"
 
-
 -------------------
 ---- AUTOSTART ----
 -------------------
@@ -99,11 +98,11 @@ hl.config({
         gaps_in  = 2,
         gaps_out = 2,
 
-        border_size = 2,
+        border_size = 4,
 
         col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            active_border   = { colors = {"rgba(33ecffee)", "rgba(00ff99ee)"}, angle = 45 },
+            inactive_border = "rgba(592939fa)",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -283,10 +282,8 @@ hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 -- ADDED BY PBK
 hl.bind(mainMod .. " + A",  hl.dsp.layout("rotatesplit"))
-hl.bind(mainMod .. " + F",  hl.dsp.window.fullscreen(1))
--- REFACTOR
 -- bind = $mainMod, F, fullscreen, 1
-hl.bind(mainMod .. " + F",  hl.dsp.window.fullscreen(1))
+hl.bind(mainMod .. " + F",  hl.dsp.window.fullscreen(0))
 -- bind = ALT CONTROL, T, exec, $terminal
 -- bind = ALT, TAB, cyclenext
 hl.bind("ALT + TAB", hl.dsp.layout("cyclenext"))
